@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M365 Copilot & Copilot Studio — Official Sources Hub v2</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Tahoma, sans-serif; background: linear-gradient(135deg,#f6f8fc 0%,#eef2f9 100%); color:#1f2937; padding:24px; min-height:100vh; }
+  .wrap { max-width:1200px; margin:0 auto; }
+  header { text-align:center; margin-bottom:24px; }
+  h1 { font-size:28px; background:linear-gradient(90deg,#0078d4,#8b5cf6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:700; }
+  .sub { color:#6b7280; margin-top:6px; font-size:14px; }
+  .toolbar { display:flex; gap:10px; flex-wrap:wrap; margin:16px 0 24px; align-items:center; justify-content:center; }
+  .tab { padding:8px 18px; border-radius:999px; border:1px solid #d1d5db; background:#fff; cursor:pointer; font-size:13px; font-weight:600; transition:.2s; }
+  .tab.active.m365 { background:#0078d4; color:#fff; border-color:#0078d4; }
+  .tab.active.studio { background:#8b5cf6; color:#fff; border-color:#8b5cf6; }
+  .tab.active.all { background:#111827; color:#fff; border-color:#111827; }
+  .tab.active.features { background:#ea580c; color:#fff; border-color:#ea580c; }
+  .tab.active.hubs { background:#059669; color:#fff; border-color:#059669; }
+  .search { padding:8px 14px; border-radius:8px; border:1px solid #d1d5db; min-width:240px; font-size:13px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:16px; }
+  .section-header { grid-column:1/-1; font-size:14px; font-weight:700; color:#374151; padding-top:14px; margin-top:8px; border-top:2px dashed #ccc; padding-left:4px; }
+  .section-header.m365 { border-top-color:#0078d4; }
+  .section-header.studio { border-top-color:#8b5cf6; }
+  .card { background:#fff; border-radius:14px; padding:18px; box-shadow:0 2px 8px rgba(0,0,0,.05); border-left:5px solid #ccc; transition:.25s; position:relative; }
+  .card:hover { transform:translateY(-4px); box-shadow:0 8px 20px rgba(0,0,0,.1); }
+  .card.m365 { border-left-color:#0078d4; }
+  .card.studio { border-left-color:#8b5cf6; }
+  .badges { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px; }
+  .badge { display:inline-block; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; letter-spacing:.5px; }
+  .badge.m365 { background:#dbeafe; color:#0078d4; }
+  .badge.studio { background:#ede9fe; color:#8b5cf6; }
+  .badge.features { background:#fff7ed; color:#ea580c; }
+  .badge.hubs { background:#ecfdf5; color:#059669; }
+  .rank { position:absolute; top:14px; right:14px; font-size:16px; }
+  .title { font-size:15px; font-weight:700; margin-bottom:6px; color:#111827; padding-right:30px; }
+  .use { font-size:13px; color:#4b5563; margin-bottom:12px; line-height:1.5; }
+  .link { display:inline-block; font-size:12px; color:#0078d4; text-decoration:none; font-weight:600; padding:6px 10px; background:#f0f6ff; border-radius:6px; transition:.2s; }
+  .card.studio .link { color:#8b5cf6; background:#f5f0ff; }
+  .link:hover { opacity:.85; }
+  .footer { text-align:center; margin-top:32px; padding:16px; color:#6b7280; font-size:12px; border-top:1px solid #e5e7eb; }
+  .legend { display:flex; gap:14px; justify-content:center; margin:10px 0 20px; flex-wrap:wrap; font-size:12px; color:#4b5563; }
+  .legend span { display:flex; align-items:center; gap:6px; }
+  .dot { width:10px; height:10px; border-radius:50%; }
+  .dot.m365 { background:#0078d4; } .dot.studio { background:#8b5cf6; }
+  .dot.features { background:#ea580c; } .dot.hubs { background:#059669; }
+  .hidden { display:none !important; }
+  .summary { background:#fff; border-radius:12px; padding:14px 20px; margin-bottom:18px; font-size:13px; color:#374151; box-shadow:0 1px 4px rgba(0,0,0,.04); }
+  .summary b { color:#111827; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🚀 M365 Copilot & Copilot Studio — Official Sources Hub</h1>
+    <div class="sub">v2 · Plan → Ship → Explain → Adopt · 🔥 Features vs 📚 Resources</div>
+  </header>
+
+  <div class="summary">
+    💡 <b>How to use:</b> 🔥 <b>Feature Sources</b> = where to <b>TRACK</b> what's new · 📚 <b>Resource Hubs</b> = where to <b>LEARN</b> how to use & govern. Message Center links go straight to the admin portal.
+  </div>
+
+  <div class="legend">
+    <span><div class="dot m365"></div> Microsoft 365 Copilot</span>
+    <span><div class="dot studio"></div> Copilot Studio</span>
+    <span><div class="dot features"></div> 🔥 Feature Sources</span>
+    <span><div class="dot hubs"></div> 📚 Resource Hubs</span>
+  </div>
+
+  <div class="toolbar">
+    <button class="tab active all" data-filter="all">All Sources</button>
+    <button class="tab m365" data-filter="m365">🟦 M365 Copilot</button>
+    <button class="tab studio" data-filter="studio">🟪 Copilot Studio</button>
+    <button class="tab features" data-filter="features">🔥 Features Only</button>
+    <button class="tab hubs" data-filter="hubs">📚 Hubs Only</button>
+    <input class="search" id="search" placeholder="🔍 Search source name or purpose...">
+  </div>
+
+  <div class="grid" id="grid">
+
+    <!-- ========== GROUP A: M365 Copilot · Features ========== -->
+    <div class="section-header m365" data-cat="m365" data-type="features">🟦 M365 Copilot · 🔥 Feature & Update Sources</div>
+
+    <div class="card m365" data-cat="m365" data-type="features">
+      <span class="rank">⭐1</span>
+      <div class="badges"><span class="badge m365">M365 COPILOT</span><span class="badge features">🔥 FEATURES</span></div>
+      <div class="title">M365 Roadmap</div>
+      <div class="use">Most authoritative plan — what's coming next.</div>
+      <a class="link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap" target="_blank" rel="noopener">Open Roadmap →</a>
+    </div>
+
+    <div class="card m365" data-cat="m365" data-type="features">
+      <span class="rank">⭐2</span>
+      <div class="badges"><span class="badge m365">M365 COPILOT</span><span class="badge features">🔥 FEATURES</span></div>
+      <div class="title">Message Center (Tenant)</div>
+      <div class="use">Tenant-level change notifications — when YOUR environment is impacted. (Direct portal link)</div>
+      <a class="link" href="https://admin.cloud.microsoft/?#/MessageCenter" target="_blank" rel="noopener">Open Message Center →</a>
+    </div>
+
+    <div class="card m365" data-cat="m365" data-type="features">
+      <span class="rank">⭐3</span>
+      <div class="badges"><span class="badge m365">M365 COPILOT</span><span class="badge features">🔥 FEATURES</span></div>
+      <div class="title">Learn — Release Notes</div>
+      <div class="use">Shipped features & latest technical change details.</div>
+      <a class="link" href="https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes" target="_blank" rel="noopener">Open Release Notes →</a>
+    </div>
+
+    <div class="card m365" data-cat="m365" data-type="features">
+      <span class="rank">⭐4</span>
+      <div class="badges"><span class="badge m365">M365 COPILOT</span><span class="badge features">🔥 FEATURES</span></div>
+      <div class="title">Tech Community Blog</div>
+      <div class="use">Monthly "what's new" recaps + PM deep dives.</div>
+      <a class="link" href="https://techcommunity.microsoft.com/category/microsoft365copilot/blog/microsoft365copilotblog" target="_blank" rel="noopener">Open Blog →</a>
+    </div>
+
+    <div class="card m365" data-cat="m365" data-type="features">
+      <span class="rank">⭐5</span>
+      <div class="badges"><span class="badge m365">M365 COPILOT</span><span class="badge features">🔥 FEATURES</span></div>
+      <div class="title">Microsoft Copilot Blog</div>
+      <div class="use">Strategic launches — Waves, Agents, Vision.</div>
+      <a class="link" href="https://www.microsoft.com/en-us/microsoft-copilot/blog/" target="_blank" rel="noopener">Open Blog →</a>
+    </div>
+
+    <!-- ========== GROUP B: M365 Copilot · Hubs ========== -->
+    <div class="section-header m365" data-cat="m365" data-type="hubs">🟦 M365 Copilot · 📚 Resource & Learning Hubs</div>
+
+    <div class="card m365" data-cat="m365" data-type="hubs">
+      <div class="badges"><span class="badge m365">M365 COPILOT</span><span class="badge hubs">📚 HUB</span></div>
+      <div class="title">Learn — Full Docs</div>
+      <div class="use">Architecture, capabilities, governance & admin controls. (Reference hub)</div>
+      <a class="link" href="https://learn.microsoft.com/en-us/microsoft-365/copilot/" target="_blank" rel="noopener">Open Docs Hub →</a>
+    </div>
+
+    <div class="card m365" data-cat="m365" data-type="hubs">
+      <div class="badges"><span class="badge m365">M365 COPILOT</span><span class="badge hubs">📚 HUB</span></div>
+      <div class="title">Copilot Adoption Hub</div>
+      <div class="use">SMB & end-user perspective + scenario libraries & prompts. (Adoption resources)</div>
+      <a class="link" href="https://adoption.microsoft.com/en-us/copilot/" target="_blank" rel="noopener">Open Adoption Hub →</a>
+    </div>
+
+    <div class="card m365" data-cat="m365" data-type="hubs">
+      <div class="badges"><span class="badge m365">M365 COPILOT</span><span class="badge hubs">📚 HUB</span></div>
+      <div class="title">Copilot Learning Hub</div>
+      <div class="use">Unified learning entry — training paths for all personas. (Learning resources)</div>
+      <a class="link" href="https://learn.microsoft.com/en-us/copilot/" target="_blank" rel="noopener">Open Learning Hub →</a>
+    </div>
+
+    <!-- ========== GROUP C: Copilot Studio · Features ========== -->
+    <div class="section-header studio" data-cat="studio" data-type="features">🟪 Copilot Studio · 🔥 Feature & Update Sources</div>
+
+    <div class="card studio" data-cat="studio" data-type="features">
+      <span class="rank">⭐1</span>
+      <div class="badges"><span class="badge studio">COPILOT STUDIO</span><span class="badge features">🔥 FEATURES</span></div>
+      <div class="title">Power Platform Release Planner</div>
+      <div class="use">Authoritative wave-based roadmap for Copilot Studio + Power Platform — most complete forward-looking plan.</div>
+      <a class="link" href="https://releaseplans.microsoft.com/" target="_blank" rel="noopener">Open Release Planner →</a>
+    </div>
+
+    <div class="card studio" data-cat="studio" data-type="features">
+      <span class="rank">⭐2</span>
+      <div class="badges"><span class="badge studio">COPILOT STUDIO</span><span class="badge features">🔥 FEATURES</span></div>
+      <div class="title">Learn — What's New in Copilot Studio</div>
+      <div class="use">Monthly shipped features — official changelog.</div>
+      <a class="link" href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/whats-new" target="_blank" rel="noopener">Open What's New →</a>
+    </div>
+
+    <div class="card studio" data-cat="studio" data-type="features">
+      <span class="rank">⭐3</span>
+      <div class="badges"><span class="badge studio">COPILOT STUDIO</span><span class="badge features">🔥 FEATURES</span></div>
+      <div class="title">M365 Roadmap (Studio filter)</div>
+      <div class="use">⚠️ Limited coverage — only a few items appear here. Use Release Planner (⭐1) for the full picture.</div>
+      <a class="link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?filters=Microsoft%20Copilot%20Studio" target="_blank" rel="noopener">Open Roadmap →</a>
+    </div>
+
+    <div class="card studio" data-cat="studio" data-type="features">
+      <span class="rank">⭐4</span>
+      <div class="badges"><span class="badge studio">COPILOT STUDIO</span><span class="badge features">🔥 FEATURES</span></div>
+      <div class="title">Message Center (Tenant)</div>
+      <div class="use">Tenant-specific Copilot Studio change notifications. (Direct portal link)</div>
+      <a class="link" href="https://admin.cloud.microsoft/?#/MessageCenter" target="_blank" rel="noopener">Open Message Center →</a>
+    </div>
+
+    <div class="card studio" data-cat="studio" data-type="features">
+      <span class="rank">⭐5</span>
+      <div class="badges"><span class="badge studio">COPILOT STUDIO</span><span class="badge features">🔥 FEATURES</span></div>
+      <div class="title">Copilot Studio Blog</div>
+      <div class="use">Monthly "new and improved" posts + PM strategy blogs.</div>
+      <a class="link" href="https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/" target="_blank" rel="noopener">Open Blog →</a>
+    </div>
+
+    <!-- ========== GROUP D: Copilot Studio · Hubs ========== -->
+    <div class="section-header studio" data-cat="studio" data-type="hubs">🟪 Copilot Studio · 📚 Resource & Learning Hubs</div>
+
+    <div class="card studio" data-cat="studio" data-type="hubs">
+      <div class="badges"><span class="badge studio">COPILOT STUDIO</span><span class="badge hubs">📚 HUB</span></div>
+      <div class="title">Learn — Full Docs</div>
+      <div class="use">Build, extend & govern agents — full product documentation. (Reference hub)</div>
+      <a class="link" href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/" target="_blank" rel="noopener">Open Docs →</a>
+    </div>
+
+    <div class="card studio" data-cat="studio" data-type="hubs">
+      <div class="badges"><span class="badge studio">COPILOT STUDIO</span><span class="badge hubs">📚 HUB</span></div>
+      <div class="title">Power CAT Agent Resources Hub</div>
+      <div class="use">Curated by Microsoft CAT — governance whitepapers, samples. (Curated resources)</div>
+      <a class="link" href="https://microsoft.github.io/agent-resources/copilot-studio/" target="_blank" rel="noopener">Open CAT Hub →</a>
+    </div>
+
+    <div class="card studio" data-cat="studio" data-type="hubs">
+      <div class="badges"><span class="badge studio">COPILOT STUDIO</span><span class="badge hubs">📚 HUB</span></div>
+      <div class="title">Power CAT Copilot Studio Kit (GitHub)</div>
+      <div class="use">Test, govern & accelerate enterprise agent delivery. (Tooling resources)</div>
+      <a class="link" href="https://github.com/microsoft/Power-CAT-Copilot-Studio-Kit" target="_blank" rel="noopener">Open GitHub →</a>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    🛡️ Curated from official Microsoft sources · Last updated May 2026 · v2
+  </div>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const items = document.querySelectorAll('.card, .section-header');
+  const search = document.getElementById('search');
+  let currentFilter = 'all';
+
+  function applyFilters() {
+    const q = search.value.toLowerCase();
+    items.forEach(el => {
+      const cat = el.dataset.cat;
+      const type = el.dataset.type;
+      let matchFilter = true;
+      if (currentFilter === 'm365') matchFilter = cat === 'm365';
+      else if (currentFilter === 'studio') matchFilter = cat === 'studio';
+      else if (currentFilter === 'features') matchFilter = type === 'features';
+      else if (currentFilter === 'hubs') matchFilter = type === 'hubs';
+      const matchSearch = q === '' || el.innerText.toLowerCase().includes(q);
+      el.classList.toggle('hidden', !(matchFilter && matchSearch));
+    });
+  }
+
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentFilter = tab.dataset.filter;
+    applyFilters();
+  }));
+
+  search.addEventListener('input', applyFilters);
+</script>
+</body>
+</html>
